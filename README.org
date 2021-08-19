@@ -1,0 +1,13 @@
+
+#+begin_src shell
+  ahc-cabal new-install --installdir . --overwrite-policy=always
+  ahc-dist --input-exe hello-cloudflare-hs --export-function handleReq --no-main --input-mjs hello-cloudflare-hs.mjs --bundle --browser
+  # Publish
+  curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \                                   
+       -H  "Authorization: Bearer $CF_API_TOKEN" \                                                      -F "metadata=@metadata.json;type=application/json" \
+       -F "script=@hello-cloudflare-hs.js;type=application/javascript" \
+       -F "wasm=@hello-cloudflare-hs.wasm;type=application/wasm"
+#+end_src
+
+If you install ~wrangler~ and ~cloudflared~ and adapt ~wrangler.toml~
+then you can also do ~wrangler tail~ to fetch logs from your function.

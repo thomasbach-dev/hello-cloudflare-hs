@@ -1,0 +1,8 @@
+name = "hello-cloudflare-hs"
+type = 'webpack'
+account_id = 'e47ecce97de1f5eb678f400142dc51ce'
+
+usage_model = ''
+workers_dev = true
+target_type = "webpack"
+webpack_config = "webpack.config.js"

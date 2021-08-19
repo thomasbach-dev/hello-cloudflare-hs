@@ -1,0 +1,17 @@
+# Compilation artifacts
+*.hi
+*.o
+
+default.mjs
+rts.mjs
+rts.*.mjs
+*.link.txt
+*.linked.txt
+*.html
+*.req.mjs
+*.wasm
+*.wasm.js
+*.wasm.mjs
+
+hello-cloudflare-hs
+hello-cloudflare-hs.js
