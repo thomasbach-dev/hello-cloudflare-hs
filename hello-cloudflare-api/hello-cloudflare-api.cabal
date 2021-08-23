@@ -1,0 +1,25 @@
+cabal-version:      3.0
+name:               hello-cloudflare-api
+version:            0.1.0.0
+synopsis:           API for the Hello Cloudflare service
+
+homepage:           https://github.com/thomasbach-dev/hello-cloudflare-hs
+
+license:            BSD-3-Clause
+author:             Thomas Bach
+maintainer:         info@thomasbach.dev
+
+library
+    exposed-modules:  HelloCloudflare.API
+
+    -- Modules included in this library but not exported.
+    -- other-modules:
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    build-depends:    base ^>=4.13
+                    , servant-server >=0.16 && <1
+                    , text >=1.2 && <2
+
+    hs-source-dirs:   src
+    default-language: Haskell2010

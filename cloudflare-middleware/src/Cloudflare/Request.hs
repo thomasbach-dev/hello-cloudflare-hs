@@ -11,8 +11,6 @@ import           Asterius.ByteString
 import           Asterius.Text
 import           Asterius.Types
 import           Control.Exception
-import qualified Data.Aeson                as A
-import qualified Data.Aeson.TH             as A
 import qualified Data.ByteString           as BS
 import qualified Data.CaseInsensitive      as CI
 import           Data.Coerce

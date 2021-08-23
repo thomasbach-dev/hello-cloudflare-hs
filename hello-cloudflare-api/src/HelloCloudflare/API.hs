@@ -2,29 +2,25 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeApplications  #-}
 {-# LANGUAGE TypeOperators     #-}
-module API
-  ( handleReq
+module HelloCloudflare.API
+  ( helloCloudflareApp
   ) where
 
-import           Cloudflare
+import           Data.Proxy (Proxy (..))
 import           Data.Text  (Text)
-import           Servant
+import           Servant    (Application, Get, Header, JSON, Server, serve,
+                             (:<|>) (..), (:>))
 
-type HttpBin =
+type HelloCloudflare =
   "ip" :> Header "cf-connecting-ip" Text :> Get '[JSON] Text
     :<|> "country" :> Header "cf-ipcountry" Text :> Get '[JSON] Text
     :<|> "user-agent" :> Header "user-agent" Text :> Get '[JSON] Text
 
-httpBinServer :: Server HttpBin
-httpBinServer = f :<|> f :<|> f
+helloCloudflareServer :: Server HelloCloudflare
+helloCloudflareServer = f :<|> f :<|> f
   where
     f (Just s) = pure s
     f _        = pure "Header not found."
 
-httpBinApp :: Application
-httpBinApp = serve (Proxy @HttpBin) httpBinServer
-
-handleReq :: JSRequest -> IO JSResponse
-handleReq = fromWaiApplication httpBinApp
-
-foreign export javascript "handleReq" handleReq :: JSRequest -> IO JSResponse
+helloCloudflareApp :: Application
+helloCloudflareApp = serve (Proxy @HelloCloudflare) helloCloudflareServer
